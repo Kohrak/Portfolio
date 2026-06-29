@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gabriel Rodríguez — Personal Record</title>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Lora:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --paper:       #f2e8d0;
+      --paper-dark:  #e5d9bc;
+      --paper-mid:   #ecdfc5;
+      --ink:         #2a1f0e;
+      --ink-mid:     #6b5a3e;
+      --ink-light:   #9a8a6a;
+      --green:       #4a7a4a;
+      --green-mid:   #6a9e6a;
+      --green-light: #9ec49e;
+      --green-pale:  #d4e8d4;
+      --amber:       #b8722a;
+      --amber-pale:  #f0d8a8;
+      --stamp-red:   #8b2020;
+      --stamp-blue:  #1a3a6a;
+      --border:      #c8b890;
+    }
+
+    body {
+      font-family: 'Lora', Georgia, serif;
+      background: #2d3a28;
+      background-image:
+        radial-gradient(ellipse at 30% 20%, #3a4a30 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 80%, #1e2e1a 0%, transparent 60%);
+      color: var(--ink);
+      line-height: 1.7;
+      font-size: 15px;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Falling leaves ──────────────────────────────────────── */
+    .leaves { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+
+    .leaf {
+      position: absolute;
+      top: -60px;
+      opacity: 0;
+      animation: leafFall linear infinite;
+    }
+
+    .leaf svg { display: block; }
+
+    .leaf:nth-child(1)  { left: 8%;  animation-duration: 12s; animation-delay: 0s;   width: 18px; }
+    .leaf:nth-child(2)  { left: 22%; animation-duration: 16s; animation-delay: 3s;   width: 14px; }
+    .leaf:nth-child(3)  { left: 38%; animation-duration: 10s; animation-delay: 7s;   width: 20px; }
+    .leaf:nth-child(4)  { left: 55%; animation-duration: 14s; animation-delay: 1.5s; width: 12px; }
+    .leaf:nth-child(5)  { left: 70%; animation-duration: 18s; animation-delay: 5s;   width: 16px; }
+    .leaf:nth-child(6)  { left: 85%; animation-duration: 11s; animation-delay: 9s;   width: 22px; }
+    .leaf:nth-child(7)  { left: 15%; animation-duration: 15s; animation-delay: 11s;  width: 13px; }
+    .leaf:nth-child(8)  { left: 62%; animation-duration: 13s; animation-delay: 4s;   width: 17px; }
+
+    @keyframes leafFall {
+      0%   { transform: translateY(0)     rotate(0deg)   translateX(0);   opacity: 0; }
+      5%   { opacity: .7; }
+      25%  { transform: translateY(25vh)  rotate(90deg)  translateX(30px); }
+      50%  { transform: translateY(50vh)  rotate(200deg) translateX(-20px); opacity: .5; }
+      75%  { transform: translateY(75vh)  rotate(310deg) translateX(25px); }
+      95%  { opacity: .3; }
+      100% { transform: translateY(105vh) rotate(400deg) translateX(-15px); opacity: 0; }
+    }
+
+    /* ── Page document ───────────────────────────────────────── */
+    .document {
+      position: relative;
+      z-index: 1;
+      max-width: 920px;
+      margin: 2rem auto;
+      background: var(--paper);
+      box-shadow:
+        0 0 0 1px var(--border),
+        4px 4px 0 #1a2614,
+        8px 8px 0 #141e10,
+        0 20px 60px rgba(0,0,0,.5);
+      background-image:
+        radial-gradient(ellipse at 15% 25%, rgba(180,140,60,.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 85% 75%, rgba(160,120,40,.10) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(200,160,80,.05) 0%, transparent 70%);
+      overflow: hidden;
+    }
+
+    .document::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 120px; height: 120px;
+      background: radial-gradient(ellipse at 0% 0%, rgba(74,122,74,.25) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .document::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 160px; height: 160px;
+      background: radial-gradient(ellipse at 100% 100%, rgba(74,122,74,.2) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Archive header band ─────────────────────────────────── */
+    .archive-band {
+      background: var(--ink);
+      color: var(--paper);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: .5rem 2rem;
+      font-family: 'Special Elite', monospace;
+      font-size: .7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+
+    .archive-band span { opacity: .7; }
+
+    /* ── Document header ─────────────────────────────────────── */
+    header {
+      padding: 2.2rem 2.8rem 1.8rem;
+      border-bottom: 2px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .stamps { display: flex; flex-direction: column; gap: .5rem; align-items: flex-end; }
+
+    .stamp {
+      display: inline-block;
+      font-family: 'Special Elite', monospace;
+      font-size: .62rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: .25rem .7rem;
+      border-width: 2px;
+      border-style: solid;
+    }
+    .stamp.red   { color: var(--stamp-red);  border-color: var(--stamp-red);  transform: rotate(2deg); }
+    .stamp.blue  { color: var(--stamp-blue); border-color: var(--stamp-blue); transform: rotate(-1.5deg); }
+
+    .record-id {
+      font-family: 'Special Elite', monospace;
+      font-size: .65rem;
+      color: var(--ink-light);
+      letter-spacing: 1.5px;
+      margin-bottom: .6rem;
+    }
+
+    h1 {
+      font-family: 'Special Elite', monospace;
+      font-size: 2.6rem;
+      color: var(--ink);
+      letter-spacing: 2px;
+      line-height: 1;
+    }
+
+    .title-tag {
+      font-family: 'Lora', serif;
+      font-size: .9rem;
+      font-style: italic;
+      color: var(--ink-mid);
+      margin-top: .4rem;
+    }
+
+    /* Contact block */
+    .contact-block {
+      margin-top: 1.2rem;
+      padding-top: 1rem;
+      border-top: 1px dashed var(--border);
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-label {
+      font-family: 'Special Elite', monospace;
+      font-size: .6rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: .2rem;
+    }
+
+    .contact-value {
+      font-size: .88rem;
+      color: var(--ink-mid);
+    }
+
+    .contact-value a { color: var(--green); text-decoration: none; }
+    .contact-value a:hover { text-decoration: underline; }
+
+    /* Handwritten annotation */
+    .found-note {
+      font-family: 'Caveat', cursive;
+      font-size: 1rem;
+      color: var(--green);
+      position: absolute;
+      top: 1.5rem;
+      right: 9rem;
+      transform: rotate(-3deg);
+      opacity: .85;
+      line-height: 1.3;
+      text-align: right;
+    }
+
+    /* ── Vine divider ────────────────────────────────────────── */
+    .vine-divider {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      padding: 0 2.8rem;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .vine-divider svg { flex-shrink: 0; }
+    .vine-divider .vine-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--green-light), var(--border), var(--green-light));
+      opacity: .6;
+    }
+
+    /* ── Body layout ─────────────────────────────────────────── */
+    .body {
+      display: grid;
+      grid-template-columns: 1fr 255px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Main column ─────────────────────────────────────────── */
+    main {
+      padding: 2rem 2rem 2rem 2.8rem;
+      border-right: 1px dashed var(--border);
+    }
+
+    section + section { margin-top: 2.2rem; }
+
+    .section-title {
+      font-family: 'Special Elite', monospace;
+      font-size: .68rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 1.1rem;
+      padding-bottom: .5rem;
+      border-bottom: 1px solid var(--green-light);
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+
+    .section-title::before { content: '❧'; font-size: 1rem; color: var(--green-mid); }
+
+    /* Profile / Chronicle */
+    .chronicle {
+      background: var(--paper-dark);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--green-mid);
+      padding: 1rem 1.2rem;
+      position: relative;
+    }
+
+    .chronicle-date {
+      font-family: 'Caveat', cursive;
+      font-size: .9rem;
+      color: var(--ink-light);
+      margin-bottom: .6rem;
+    }
+
+    .chronicle p {
+      color: var(--ink-mid);
+      font-size: .97rem;
+      margin-bottom: .65rem;
+    }
+    .chronicle p:last-child { margin-bottom: 0; }
+
+    /* Jobs / Records */
+    .record + .record {
+      margin-top: 1.8rem;
+      padding-top: 1.8rem;
+      border-top: 1px dashed var(--border);
+    }
+
+    .record-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: .8rem;
+    }
+
+    .record-left { flex: 1; }
+
+    .record-verified {
+      font-family: 'Special Elite', monospace;
+      font-size: .55rem;
+      letter-spacing: 2px;
+      color: var(--stamp-blue);
+      border: 1.5px solid var(--stamp-blue);
+      padding: .15rem .4rem;
+      opacity: .7;
+      flex-shrink: 0;
+      transform: rotate(1deg);
+    }
+
+    .record-title {
+      font-family: 'Special Elite', monospace;
+      font-size: 1rem;
+      color: var(--ink);
+      letter-spacing: .5px;
+    }
+
+    .record-org {
+      font-size: .95rem;
+      font-style: italic;
+      font-weight: 600;
+      color: var(--green);
+      margin-top: .1rem;
+    }
+
+    .record-period {
+      font-size: .78rem;
+      color: var(--ink-light);
+      font-family: 'Special Elite', monospace;
+      letter-spacing: 1px;
+      margin-top: .2rem;
+    }
+
+    .record ul { list-style: none; padding: 0; }
+
+    .record ul li {
+      position: relative;
+      padding-left: 1.3rem;
+      color: var(--ink-mid);
+      font-size: .93rem;
+      margin-bottom: .45rem;
+      line-height: 1.55;
+    }
+
+    .record ul li::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      color: var(--amber);
+      font-size: .55rem;
+      top: .45rem;
+    }
+
+    /* ── Sidebar ─────────────────────────────────────────────── */
+    aside {
+      padding: 2rem 1.6rem;
+      background: var(--paper-mid);
+      background-image:
+        radial-gradient(ellipse at 50% 0%, rgba(74,122,74,.08) 0%, transparent 60%);
+    }
+
+    .aside-section + .aside-section { margin-top: 1.8rem; }
+
+    .aside-title {
+      font-family: 'Special Elite', monospace;
+      font-size: .62rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: .9rem;
+      padding-bottom: .4rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+
+    .tag {
+      background: var(--green-pale);
+      color: var(--green);
+      border: 1px solid var(--green-light);
+      font-family: 'Special Elite', monospace;
+      font-size: .7rem;
+      letter-spacing: .5px;
+      padding: .2rem .5rem;
+      border-radius: 2px;
+    }
+
+    .tag.old {
+      background: var(--amber-pale);
+      color: var(--amber);
+      border-color: #d4b870;
+    }
+
+    .principles-list { list-style: none; padding: 0; }
+
+    .principles-list li {
+      font-size: .88rem;
+      color: var(--ink-mid);
+      font-style: italic;
+      padding: .3rem 0;
+      border-bottom: 1px dotted var(--border);
+    }
+
+    .principles-list li:last-child { border-bottom: none; }
+
+    .edu-item + .edu-item { margin-top: 1rem; }
+
+    .edu-degree {
+      font-family: 'Special Elite', monospace;
+      font-size: .82rem;
+      color: var(--ink);
+      letter-spacing: .3px;
+    }
+
+    .edu-school {
+      font-size: .82rem;
+      color: var(--ink-mid);
+      font-style: italic;
+      margin-top: .1rem;
+    }
+
+    .edu-year {
+      font-size: .75rem;
+      color: var(--ink-light);
+      margin-top: .1rem;
+      font-family: 'Special Elite', monospace;
+    }
+
+    /* Decorative mark */
+    .archive-mark {
+      text-align: center;
+      margin-top: 1.5rem;
+      opacity: .12;
+      font-size: 2.6rem;
+      line-height: 1;
+      user-select: none;
+    }
+
+    /* Handwritten aside annotation */
+    .aside-note {
+      font-family: 'Caveat', cursive;
+      font-size: .9rem;
+      color: var(--green);
+      text-align: center;
+      margin-top: 1.2rem;
+      line-height: 1.4;
+      opacity: .75;
+    }
+
+    /* ── Footer ──────────────────────────────────────────────── */
+    footer {
+      border-top: 2px solid var(--border);
+      background: var(--paper-dark);
+      padding: .9rem 2.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    .footer-note {
+      font-family: 'Caveat', cursive;
+      font-size: 1rem;
+      color: var(--green);
+      font-style: italic;
+    }
+
+    .footer-code {
+      font-family: 'Special Elite', monospace;
+      font-size: .62rem;
+      letter-spacing: 2px;
+      color: var(--ink-light);
+      text-transform: uppercase;
+    }
+
+    /* ── Responsive ──────────────────────────────────────────── */
+    @media (max-width: 700px) {
+      .body { grid-template-columns: 1fr; }
+      aside { border-top: 1px dashed var(--border); }
+      main { padding: 1.5rem; border-right: none; }
+      header { padding: 1.5rem; }
+      .found-note { display: none; }
+      .header-top { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Falling leaves -->
+<div class="leaves" aria-hidden="true">
+  <div class="leaf"><svg viewBox="0 0 30 40" fill="none"><path d="M15 38 C15 38 3 28 3 16 C3 6 15 2 15 2 C15 2 27 6 27 16 C27 28 15 38 15 38Z" fill="#5a8a5a" opacity=".8"/><line x1="15" y1="38" x2="15" y2="2" stroke="#3a6a3a" stroke-width="1"/><line x1="15" y1="20" x2="8" y2="12" stroke="#3a6a3a" stroke-width=".8"/><line x1="15" y1="26" x2="22" y2="18" stroke="#3a6a3a" stroke-width=".8"/></svg></div>
+  <div class="leaf"><svg viewBox="0 0 30 40" fill="none"><path d="M15 38 C15 38 3 28 3 16 C3 6 15 2 15 2 C15 2 27 6 27 16 C27 28 15 38 15 38Z" fill="#7aaa7a" opacity=".7"/><line x1="15" y1="38" x2="15" y2="2" stroke="#4a8a4a" stroke-width="1"/></svg></div>
+  <div class="leaf"><svg viewBox="0 0 30 40" fill="none"><path d="M15 38 C15 38 3 28 3 16 C3 6 15 2 15 2 C15 2 27 6 27 16 C27 28 15 38 15 38Z" fill="#4a7a4a" opacity=".9"/><line x1="15" y1="38" x2="15" y2="2" stroke="#2a5a2a" stroke-width="1"/><line x1="15" y1="18" x2="22" y2="10" stroke="#2a5a2a" stroke-width=".8"/></svg></div>
+  <div class="leaf"><svg viewBox="0 0 30 40" fill="none"><path d="M15 38 C15 38 3 28 3 16 C3 6 15 2 15 2 C15 2 27 6 27 16 C27 28 15 38 15 38Z" fill="#8aba8a" opacity=".6"/><line x1="15" y1="38" x2="15" y2="2" stroke="#5a9a5a" stroke-width="1"/></svg></div>
+  <div class="leaf"><svg viewBox="0 0 30 40" fill="none"><path d="M15 38 C15 38 3 28 3 16 C3 6 15 2 15 2 C15 2 27 6 27 16 C27 28 15 38 15 38Z" fill="#6a9a6a" opacity=".8"/><line x1="15" y1="38" x2="15" y2="2" stroke="#3a7a3a" stroke-width="1"/><line x1="15" y1="22" x2="8" y2="14" stroke="#3a7a3a" stroke-width=".8"/><line x1="15" y1="28" x2="22" y2="20" stroke="#3a7a3a" stroke-width=".8"/></svg></div>
+  <div class="leaf"><svg viewBox="0 0 30 40" fill="none"><path d="M15 38 C15 38 3 28 3 16 C3 6 15 2 15 2 C15 2 27 6 27 16 C27 28 15 38 15 38Z" fill="#5a8a5a" opacity=".75"/><line x1="15" y1="38" x2="15" y2="2" stroke="#3a6a3a" stroke-width="1"/></svg></div>
+  <div class="leaf"><svg viewBox="0 0 30 40" fill="none"><path d="M15 38 C15 38 3 28 3 16 C3 6 15 2 15 2 C15 2 27 6 27 16 C27 28 15 38 15 38Z" fill="#7aaa7a" opacity=".65"/><line x1="15" y1="38" x2="15" y2="2" stroke="#4a8a4a" stroke-width="1"/></svg></div>
+  <div class="leaf"><svg viewBox="0 0 30 40" fill="none"><path d="M15 38 C15 38 3 28 3 16 C3 6 15 2 15 2 C15 2 27 6 27 16 C27 28 15 38 15 38Z" fill="#4a7a4a" opacity=".85"/><line x1="15" y1="38" x2="15" y2="2" stroke="#2a5a2a" stroke-width="1"/></svg></div>
+</div>
+
+<div class="document">
+
+  <!-- Archive band -->
+  <div class="archive-band">
+    <span>Personal Records Archive — Professional File</span>
+    <span>Doc. #GR-1995-LDN · Filed 2026</span>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-top">
+      <div>
+        <div class="record-id">Employment Record · London, North</div>
+        <h1>Gabriel Rodríguez</h1>
+        <p class="title-tag">Senior Software Engineer</p>
+      </div>
+      <div class="stamps">
+        <div class="stamp red">Available</div>
+        <div class="stamp blue">London · 2026</div>
+      </div>
+    </div>
+
+    <div class="contact-block">
+      <div class="contact-group">
+        <div class="contact-label">Location</div>
+        <div class="contact-value">London</div>
+      </div>
+      <div class="contact-group">
+        <div class="contact-label">LinkedIn</div>
+        <div class="contact-value"><a href="https://linkedin.com/in/kohrak">linkedin.com/in/kohrak</a></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Vine divider -->
+  <div class="vine-divider">
+    <div class="vine-line"></div>
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <circle cx="10" cy="10" r="3" fill="#6a9e6a" opacity=".6"/>
+      <path d="M10 2 Q14 6 10 10 Q6 14 10 18" stroke="#6a9e6a" stroke-width="1" fill="none" opacity=".5"/>
+      <path d="M2 10 Q6 6 10 10 Q14 14 18 10" stroke="#6a9e6a" stroke-width="1" fill="none" opacity=".5"/>
+    </svg>
+    <div class="vine-line"></div>
+  </div>
+
+  <div class="body">
+
+    <!-- Main -->
+    <main>
+
+      <section>
+        <h2 class="section-title">Personal Chronicle</h2>
+        <div class="chronicle">
+          <div class="chronicle-date">On the occasion of seeking new challenges — 2026</div>
+          <p>A Senior Software Engineer with 8+ years building backend systems and distributed architectures across AWS and GCP — walking the path of simplicity, finding the clearest solution while holding fast to the practices that make good work last.</p>
+          <p>In recent years the work turned skyward: event-driven microservices, cloud-native infrastructure, high-throughput data pipelines at scale. Full ownership from the first conversation with a product team to the moment something goes live. Pragmatic throughout — TDD, XP, Infrastructure as Code — and able to contribute across the stack, from backend and cloud infrastructure to cross-functional collaboration with product and business stakeholders.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Employment Record</h2>
+
+        <div class="record">
+          <div class="record-header">
+            <div class="record-left">
+              <div class="record-title">Software Engineer</div>
+              <div class="record-org">Songtradr</div>
+              <div class="record-period">May 2021 — Present</div>
+            </div>
+            <div class="record-verified">Current</div>
+          </div>
+          <ul>
+            <li>Architected and automated music ingestion pipelines (media, metadata, availability) across AWS and GCP, processing 1 million releases and 10 million tracks per week using Cloud Storage, S3, Pub/Sub, SNS, SQS, Cloud Functions, Lambda, Firestore, DocumentDB, Node.js and .NET</li>
+            <li>Designed an event-driven notification system for ingested releases, feeding downstream AI tagging, transcoding and search indexing pipelines</li>
+            <li>Built a distributed search product on AWS (OpenSearch, Fargate, Node.js), replacing a legacy solution with a more scalable and cost-efficient architecture</li>
+            <li>Migrated the media delivery service to Cloud Run, improving horizontal scalability and reducing operational overhead</li>
+            <li>Re-architected the transcoding solution to support on-the-fly and background transcoding using Cloud Run, Cloud Storage, Pub/Sub and .NET</li>
+            <li>Led end-to-end solution design: gathered requirements with Product, architected for cost, scale and maintainability, and delivered scoped MVPs with accurate estimation; applied TDD, XP and pair programming throughout</li>
+          </ul>
+        </div>
+
+        <div class="record">
+          <div class="record-header">
+            <div class="record-left">
+              <div class="record-title">Software Engineer</div>
+              <div class="record-org">Santander UK</div>
+              <div class="record-period">July 2019 — May 2021</div>
+            </div>
+            <div class="record-verified">On Record</div>
+          </div>
+          <ul>
+            <li>Built an emergency online solution for mortgage clients to pause payments during the COVID-19 crisis, reducing telephone wait times and enabling government-required processing (Angular, Spring Boot microservices, RabbitMQ)</li>
+            <li>Maintained and extended the mortgages online service — a monolith Spring Boot MVC app with Thymeleaf and plain JS</li>
+            <li>Developed a shared Angular component library to facilitate new front-end products while maintaining visual consistency</li>
+            <li>Delivered the Further Advances project, allowing mortgage customers to borrow more on their existing mortgage (Spring Boot microservices, Angular, REST APIs)</li>
+            <li>Applied BDD to align product, engineering and QA on acceptance criteria; collaborated directly with product owners and business stakeholders</li>
+          </ul>
+        </div>
+
+        <div class="record">
+          <div class="record-header">
+            <div class="record-left">
+              <div class="record-title">Software Developer</div>
+              <div class="record-org">Electrika Ltd</div>
+              <div class="record-period">May 2018 — July 2019</div>
+            </div>
+            <div class="record-verified">On Record</div>
+          </div>
+          <ul>
+            <li>Built a field quote tool for Schneider Electric: .NET API, Swift iOS app with offline catalogue sync, and an Angular web app for quote approvals</li>
+            <li>Maintained the company's legacy PIM system during its transition (.NET MVC, AngularJS, SQL)</li>
+            <li>Built a new flagship PIM system with an API-first architecture to power customer-facing sites (.NET, Angular)</li>
+            <li>Introduced TDD to the team and improved data retrieval performance using optimised SQL stored procedures</li>
+          </ul>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- Sidebar -->
+    <aside>
+
+      <div class="aside-section">
+        <h2 class="aside-title">Cloud &amp; Infrastructure</h2>
+        <div class="tags">
+          <span class="tag">AWS</span>
+          <span class="tag">GCP</span>
+          <span class="tag">Terraform</span>
+          <span class="tag">Docker</span>
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">Cloud Run</span>
+          <span class="tag">Lambda</span>
+          <span class="tag">EC2</span>
+          <span class="tag">ECS / Fargate</span>
+          <span class="tag">Cloud Functions</span>
+          <span class="tag">Compute Engine</span>
+        </div>
+      </div>
+
+      <div class="aside-section">
+        <h2 class="aside-title">Messaging &amp; Streaming</h2>
+        <div class="tags">
+          <span class="tag">Pub/Sub</span>
+          <span class="tag">SNS</span>
+          <span class="tag">SQS</span>
+          <span class="tag">RabbitMQ</span>
+          <span class="tag">EventArc</span>
+          <span class="tag">Cloud Tasks</span>
+        </div>
+      </div>
+
+      <div class="aside-section">
+        <h2 class="aside-title">Data &amp; Search</h2>
+        <div class="tags">
+          <span class="tag">OpenSearch</span>
+          <span class="tag">Firestore</span>
+          <span class="tag">DocumentDB</span>
+          <span class="tag">S3 / Cloud Storage</span>
+        </div>
+      </div>
+
+      <div class="aside-section">
+        <h2 class="aside-title">Languages &amp; Frameworks</h2>
+        <div class="tags">
+          <span class="tag">Node.js</span>
+          <span class="tag">.NET</span>
+          <span class="tag">Spring Boot</span>
+          <span class="tag">Angular</span>
+          <span class="tag">SQL</span>
+        </div>
+      </div>
+
+      <div class="aside-section">
+        <h2 class="aside-title">Working Principles</h2>
+        <ul class="principles-list">
+          <li>Test-Driven Development (TDD)</li>
+          <li>Behaviour-Driven Development (BDD)</li>
+          <li>Extreme Programming (XP)</li>
+          <li>Pair Programming</li>
+          <li>Infrastructure as Code (IaC)</li>
+          <li>CI / CD</li>
+          <li>REST API Design</li>
+          <li>Microservices Architecture</li>
+          <li>Kanban</li>
+          <li>Full project lifecycle ownership</li>
+        </ul>
+      </div>
+
+      <div class="aside-section">
+        <h2 class="aside-title">Academic Record</h2>
+
+        <div class="edu-item">
+          <div class="edu-degree">Computer Science</div>
+          <div class="edu-school">Universidad Simón Bolívar, Venezuela</div>
+          <div class="edu-year">2014 – 2016 · GPA 4.0 / 5.0</div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-degree">Front End Web Development</div>
+          <div class="edu-school">freeCodeCamp</div>
+          <div class="edu-year">2018 · Certification</div>
+        </div>
+      </div>
+
+      <div class="archive-mark">✦</div>
+
+      <div class="aside-note">
+        "Good work is built<br>to last, not just to ship."
+      </div>
+
+    </aside>
+  </div>
+
+  <footer>
+    <div class="footer-note">Filed with care · Personal Records Archive</div>
+    <div class="footer-code">Record #GR-1995-LDN · Classification: Engineer</div>
+  </footer>
+
+</div>
+</body>
+</html>
